@@ -1,14 +1,7 @@
 import express from 'express';
 import patients from '../data/patients.ts';
 import { v1 as uuid } from 'uuid';
-
-interface PatientInput {
-  name: string;
-  dateOfBirth: string;
-  ssn: string;
-  gender: string;
-  occupation: string;
-}
+import type { Patient } from '../types.ts';
 
 const router = express.Router();
 
@@ -17,7 +10,7 @@ router.get('/', (_req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const { name, dateOfBirth, ssn, gender, occupation } = req.body as Partial<PatientInput>;
+  const { name, dateOfBirth, ssn, gender, occupation } = req.body as Partial<Patient, 'id'>;
 
   const newPatient = {
     id: uuid(),
