@@ -10,7 +10,7 @@ router.get('/', (_req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const { name, dateOfBirth, ssn, gender, occupation } = req.body as Partial<Patient, 'id'>;
+  const { name, dateOfBirth, ssn, gender, occupation } = req.body as Omit<Patient, 'id'>;
 
   const newPatient = {
     id: uuid(),
