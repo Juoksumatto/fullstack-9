@@ -13,6 +13,7 @@ const AddNewDiary = ({ onCancel, onSubmit }: Props) => {
   const [date, setDate] = useState('');
   const [weather, setWeather] = useState<Weather>('sunny');
   const [visibility, setVisibility] = useState<Visibility>('great');
+  const [comment, setComment] = useState('');
   const [error, setError] = useState<string | null>(null);
 
   const addDiary = async (event: SubmitEvent<HTMLFormElement>) => {
@@ -48,6 +49,10 @@ const AddNewDiary = ({ onCancel, onSubmit }: Props) => {
             <option key={option} value={option}>{option}</option>
           ))}
         </select>
+      </label>
+      <label>
+        Comment:
+        <input value={comment} onChange={(event) => setComment(event.target.value)} />
       </label>
       {error && <p role="alert">{error}</p>}
       <button type="submit">Add</button>
